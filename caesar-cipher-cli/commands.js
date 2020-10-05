@@ -18,7 +18,7 @@ function commands() {
     if (validation.isInputFileExists(parseArgs.input))
       params.input = parseArgs.input;
   } else {
-    console.log(chalk.blue('Enter a text: \n'));
+    console.log(chalk.blue('Enter the text to encrypt/decrypt.'));
   }
 
   if (parseArgs.output)
