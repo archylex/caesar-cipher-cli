@@ -1,6 +1,7 @@
 function commands() {
   const throwError = require('./errors');
   const validation = require('./validation');
+  const chalk = require('chalk');
   const parseArgs = require('minimist')(process.argv, {
     string: ['a', 's', 'i', 'o'],
     alias: { a: 'action', s: 'shift', i: 'input', o: 'output' }
@@ -13,9 +14,12 @@ function commands() {
   if (validation.checkShift(parseArgs.shift))
     params.shift = parseArgs.shift;
 
-  if (parseArgs.input)
+  if (parseArgs.input) {
     if (validation.isInputFileExists(parseArgs.input))
       params.input = parseArgs.input;
+  } else {
+    console.log(chalk.blue('Enter a text: \n'));
+  }
 
   if (parseArgs.output)
     if (validation.isOutputFileExists(parseArgs.output))

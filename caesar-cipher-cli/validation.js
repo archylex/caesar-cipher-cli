@@ -2,21 +2,23 @@ const throwError = require('./errors');
 const fs = require('fs');
 
 function checOutputkFileExists(path) {
-  fs.access(path, fs.F_OK, err => {
-    if (err)
-      throwError('outputFileDoesntExists');
-
-    return true;
-  })
+  try {
+    fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK);
+    return true
+  } catch (err) {
+    throwError('outputFileDoesntExists');
+    return false;
+  }
 }
 
 function checInputkFileExists(path) {
-  fs.access(path, fs.F_OK, err => {
-    if (err)
-      throwError('inputFileDoesntExists');
-
-    return true;
-  })
+  try {
+    fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK);
+    return true
+  } catch (err) {
+    throwError('inputFileDoesntExists');
+    return false;
+  }
 }
 
 function checkAction(action) {

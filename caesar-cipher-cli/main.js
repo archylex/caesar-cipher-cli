@@ -1,6 +1,10 @@
+const fs = require('fs');
 const commands = require('./commands');
-const { encode, decode} = require('./caesar');
+const transform = require('./transform');
 
 const params = commands();
 
-console.log(encode('Aa', params.shift));
+
+fs.createReadStream(params.input, 'utf-8')
+  .pipe(new transform.CaesarCipher())
+  .pipe(fs.createWriteStream(params.output, { flags: 'a+' }));
