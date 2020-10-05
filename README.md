@@ -16,3 +16,8 @@
 ```bash
 :~$ node main.js -a decode -s 3 -i ./file1 -o ./file2
 ```
+
+The path to the main.js must be specified.
+```bash
+:~$ node caesar-cipher-cli/main.js --action encode -s 1 -i ./file.txt -o ./file2.txt
+```
