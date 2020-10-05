@@ -9,10 +9,10 @@
 
 ## Examples
 
-```console
+```bash
 :~$ node main.js -action encode -shift 3
 ```
 
-```console
+```bash
 :~$ node main.js -a decode -s 3 -i ./file1 -o ./file2
 ```
