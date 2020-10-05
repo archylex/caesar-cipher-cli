@@ -1,16 +1,16 @@
-const fs = require('fs');
-const commands = require('./commands');
-const transform = require('./transform');
-const terminal = require('./terminal');
+const commands = require('./commands.js');
+const file = require('./streams.js');
+const terminal = require('./terminal.js');
 
 const params = commands();
-
 const shift = Number(params.shift);
 
-if (params.input) {
-fs.createReadStream(params.input, 'utf-8')
-  .pipe(new transform.CaesarCipher(shift))
-  .pipe(fs.createWriteStream(params.output, { flags: 'a+' }));
+if (params.input && params.output) {
+  file.streamFile(params.input, params.output, params.action, shift);
+} else if (params.input){
+  file.streamFromFile(params.input, params.action, shift);
+} else if (params.output){
+  terminal.getStdOut(params.output, params.action, shift);
 } else {
-  terminal.getStdIn(shift);  
+  terminal.getStdIn(params.action, shift);
 }
