@@ -1,5 +1,20 @@
 # caesar-cipher-cli
 
+## Install
+
+Clone from GitHub
+```bash
+:~$ git clone https://github.com/archylex/caesar-cipher-cli.git
+```
+Go to the folder
+```bash
+:~$ cd caesar-cipher-cli/
+```
+Install modules
+```bash
+:~$ npm install
+```
+
 ## Parameters
 
 - -a, --action: an action encode/decode
